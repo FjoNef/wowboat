@@ -1,6 +1,8 @@
-namespace WowBoatApi.DAL;
+using WowBoatApi.DAL;
 
-public class BoatInformation
+namespace WowBoatApi.ViewData;
+
+public class BoatInformationView
 {
     public int Id { get; private set; }
     
@@ -16,11 +18,11 @@ public class BoatInformation
     
     public bool CaptainAvailable { get; set; }
     
-    public ICollection<BoatImage> Images { get; set; }
+    public List<BoatImage> Images { get; set; }
     
-    public ICollection<BoatBenefit> Benefits { get; set; }
+    public List<string> Benefits { get; set; }
     
-    public BoatType BoatType { get; set; }
+    public int BoatType { get; set; }
     
-    public BoatLocation Location { get; set; }
+    public int Location { get; set; }
 }

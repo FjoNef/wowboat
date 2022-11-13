@@ -1,3 +1,4 @@
+using WowBoatApi.DAL;
 using WowBoatApi.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,9 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddCors();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IBoatRepository), typeof(BoatRepository));
+builder.Services.AddScoped<WowBoatDbContext>();
 
 var app = builder.Build();
 
@@ -20,7 +23,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(options => options.WithOrigins("aeda-46-33-200-144.eu.ngrok.io").AllowAnyMethod());
 
 app.UseAuthorization();
 
